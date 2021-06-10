@@ -44,7 +44,7 @@ print(avg_bart)
 sum_r1_pipe=score_pipe1['rouge-1']['f']+score_pipe2['rouge-1']['f']+score_pipe3['rouge-1']['f']+score_pipe['rouge-1']['f']
 sum_r2_pipe=score_pipe1['rouge-2']['f']+score_pipe2['rouge-2']['f']+score_pipe3['rouge-2']['f']+score_pipe['rouge-2']['f']
 sum_rl_pipe=score_pipe1['rouge-l']['f']+score_pipe2['rouge-l']['f']+score_pipe3['rouge-l']['f']+score_pipe['rouge-l']['f']
-avg_pipe={'xsum_bart_pipe':[{'r1':sum_r1_pipe/3,'r2':sum_r2_pipe/3,'rl':sum_r1_pipe/3}]}
+avg_pipe={'xsum_bart':[{'r1':sum_r1_pipe/3,'r2':sum_r2_pipe/3,'rl':sum_r1_pipe/3}]}
 print(avg_pipe)
 
 sum_r1_gpt2=score_gpt21['rouge-1']['f']+score_gpt22['rouge-1']['f']+score_gpt23['rouge-1']['f']+score_gpt2['rouge-1']['f']
@@ -62,6 +62,6 @@ print(avg_bert)
 #result
 # {'xsum_bart_pipe_tune': [{'r1': 0.3820454756999778, 'r2': 0.176630219258779, 'rl': 0.3820454756999778}]}
 # {'xsum_bart_token': [{'r1': 0.37407649304975177, 'r2': 0.17682388697498086, 'rl': 0.37407649304975177}]}
-# {'xsum_bart_pipe': [{'r1': 0.24060701097531786, 'r2': 0.04133145898180703, 'rl': 0.24060701097531786}]}
+# {'xsum_bart_': [{'r1': 0.24060701097531786, 'r2': 0.04133145898180703, 'rl': 0.24060701097531786}]}
 # {'xsum_gpt2': [{'r1': 0.20618362713483904, 'r2': 0.03957861065243839, 'rl': 0.20618362713483904}]}
 # {'xsum_bert': [{'r1': 0.1419816184235865, 'r2': 0.024301442245603037, 'rl': 0.1419816184235865}]}
