@@ -45,19 +45,19 @@ for i in range(0,len(ids)):
     #ref= datasets["test"]["highlights"][ids[i]]
     references.append(ref)
     
-    # fine tune on bart
-    
+    # Pileine bart -fine tuned on summerization tasks, this gives the best rouge scores
     summary_tune=summarizer_tune(body, min_length=60, max_length=150,truncation=True)[0]['summary_text']
     summaries_tune.append(summary_tune)
 
-    #bart
-    article_input_ids = tokenizer.batch_encode_plus([body], return_tensors='pt', max_length=1024,truncation=True)['input_ids'].to(torch_device)#his will fail on GPU becuase input is on CPU
+    #bart with pre=trained tokens
+    #This will fail on GPU becuase input and output are not on the same device. Have not figure out how to move strs around. 
+    #Ideally, we want to use the whole datasets instead of subsets, so this model can be put on a seperate run. 
+    article_input_ids = tokenizer.batch_encode_plus([body], return_tensors='pt', max_length=1024,truncation=True)['input_ids'].to(torch_device)
     summary_ids = model.generate(article_input_ids,num_beams=4, length_penalty=2.0, min_length=60,no_repeat_ngram_size=3)
     summary_bart = tokenizer.decode(summary_ids.squeeze(), skip_special_tokens=True)
     summaries_bart.append(summary_bart)
     
     #pipeline bart
-   
     summary_pipe=summarizer_pipe(body, min_length=60,max_length=150,truncation=True)[0]['summary_text']
     summaries_pipe.append(summary_pipe)
 
